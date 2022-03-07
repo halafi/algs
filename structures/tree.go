@@ -35,21 +35,22 @@ func InsertNodeToTree(tree *TreeNode, node *TreeNode) {
 func InitTree(values ...int) (root *TreeNode) {
 	rootNode := TreeNode{Value: DefaultValue, Right: nil, Left: nil}
 	for _, value := range values {
-		fmt.Printf("%d", value)
 		node := TreeNode{Value: value}
-		fmt.Println("insert node to tree")
 		InsertNodeToTree(&rootNode, &node)
 	}
 	return &rootNode
 }
 
+func InOrderTraversal(tree *TreeNode) {
+	if tree != nil {
+		InOrderTraversal(tree.Left)
+		fmt.Println(tree.Value)
+		InOrderTraversal(tree.Right)
+	}
+}
+
 func main() {
-	tree := InitTree(1, 2, 3, 4, 5, 0)
-	fmt.Println(tree.Value)
-	fmt.Println(tree.Left)
-	fmt.Println(tree.Right)
-	fmt.Println(tree.Right.Value)
-	fmt.Println(tree.Right.Left)
-	fmt.Println(tree.Right.Right)
+	tree := InitTree(1, 2, 3, 4, 5, 0, -1, -2)
+	InOrderTraversal(tree)
 
 }
